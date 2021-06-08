@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Navigation from './components/Navigation';
- 
+// import Navigation from './components/Navigation';
+import TodoForm from './components/TodoForm'; 
 import { todos } from './todos.json';
-import TodoForm from './components/TodoForm';
+
 
 console.log(todos);
 
 
 
 class App extends Component {
-  constructor() {
+  constructor() {       
     super();
     this.state = {
       todos
@@ -41,12 +41,13 @@ class App extends Component {
           <div className="card mt-4">
             <div className="card-title text-center">
               <h3>{todo.title}</h3>
-              <span className="badge badge-pill badge-danger ml-2">
-                {todo.priority}
-              </span>
+                <span className="badge badge-pill badge-danger ml-2">
+                  <p>{ todo.priority }</p>
+                </span>
             </div>
             <div className="card-body">
-              {todo.description}
+              <p>{todo.descripcion}</p>
+              <p><mark>{todo.responsible}</mark></p>
             </div>
             <div className="card-footer">
               <button
@@ -56,7 +57,7 @@ class App extends Component {
               </button>
             </div>
           </div>
-        </div>
+        </div>  
       )
     });
 
@@ -66,7 +67,7 @@ class App extends Component {
             <a href="" className="text-white">
               Task
               <span className="badge badge-pill badge-light ml-2">
-                5
+                {this.state.todos.length}
               </span>
             </a>
                   
@@ -75,11 +76,11 @@ class App extends Component {
             <div className="row mt-4">
               <div className="col-md-3">
                 <img src={logo} className="App-logo" alt="logo" />
-                <TodoForm/>
+                <TodoForm onAddTodo={this.handleAddTodo}/>
               </div> 
               <div className="col-md-9">
                 <div className="row">
-                  <Navigation/>
+                  { todos }
                 </div>
               </div>
             </div> 
